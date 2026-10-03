@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<artifact-configuration xmlns="http://signpath.io/artifact-configuration/v1">
+  <parameters>
+    <parameter name="version" required="true" />
+  </parameters>
+  <zip-file>
+    <pe-file path="SiriModManager.exe" product-name="Siri ModManager"
+             product-version="${version}" file-version="${version}"
+             company-name="siri-mods.de" original-filename="SiriModManager.exe">
+      <authenticode-sign hash-algorithm="sha256"
+                         description="Siri ModManager" description-url="https://www.siri-mods.de/" />
+    </pe-file>
+  </zip-file>
+</artifact-configuration>

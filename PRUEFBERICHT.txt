@@ -1,0 +1,53 @@
+Siri ModManager — SignPath-Vorbereitung
+Prüfung: 3. Oktober 2026
+
+Ergebnis
+
+Der vollständige Quellcode basiert auf dem bereits bereitgestellten Manager
+0.8.0. Alle Go-Programmdateien sind gegenüber diesem Stand unverändert.
+Geändert wurden der Build-Ablauf und die korrekte Dateibeschreibung des Setups.
+Hinzugekommen sind Open-Source-, Datenschutz- und SignPath-Unterlagen sowie
+GitHub-Workflows. Es wurde keine Signatur erzeugt oder eine Zulassung behauptet.
+
+Erfolgreich geprüft
+
+- Vorhandene Kernlogiktests: go test -count=1 -json ./core, erfolgreicher Abschluss.
+  Der Quellcode enthält 27 Testfunktionen im Kernpaket plus Untertests.
+- Alle vier PowerShell-Skripte mit dem Parser von PowerShell 7.6.6 geprüft.
+- Beide SignPath-XML-Dateien gegen das aktuelle offizielle XSD geprüft
+  (System.Xml/.NET; Namespace http://signpath.io/artifact-configuration/v1).
+- Beide GitHub-Workflows mit actionlint 1.7.12 fehlerfrei geprüft.
+- Build.ps1 tatsächlich mit Go 1.27.1 und MinGW-windres ausgeführt:
+  Manager und Setup vollständig aus dem Quellcode und den Ressourcen gebaut.
+- Beide Ergebnisse: Windows x64, GUI-Subsystem, Produktname und Version 0.8.0.
+- OriginalFilename ist pro Datei korrekt, auch für SiriModManager_Setup.exe.
+- Das Setup enthält exakt die zuvor gebaute Manager-EXE.
+- Beide lokalen Prüfbinaries sind erwartungsgemäß unsigniert.
+- Lokale Dokumentationslinks geprüft. Quellcodepaket enthält keine vorkompilierten
+  EXEs, .syso-Ressourcen, privaten Signierschlüssel oder Kontokonfigurationen.
+
+Grenzen
+
+Die Buildprüfung erfolgte als Cross-Build auf Linux. Die Windows-Oberfläche,
+Explorer-Dialoge, Installation und Windows-DPAPI wurden hier nicht ausgeführt.
+Die Windows-DPAPI-Tests sind im GitHub-Windows-Workflow enthalten.
+
+Das öffentliche GitHub-Repository wurde am 3. Oktober 2026 angelegt. Der Upload
+wurde vor dem ersten Commit durch einen technischen Browserfehler unterbrochen.
+GitHub-Buildausführung und SignPath-Anfragen stehen daher weiterhin aus; eine
+Foundation-Freigabe liegt ebenfalls noch nicht vor. Die Windows-Authenticode-Prüfung
+und der komplette Ablauf mit einem echten Foundation-Zertifikat sind daher noch
+offen. Die Workflow-Dateien und XML-Konfigurationen sind eine geprüfte Vorbereitung,
+keine Bestätigung, dass SignPath das Projekt angenommen oder die Konfiguration
+bereits in seinem Dienst freigegeben hat.
+
+Die Produktionseinstellungen müssen den SignPath-Bedingungen entsprechen:
+GitHub-Herkunftsprüfung, GitHub-hosted Runner, MFA, genehmigte Maintainer/Approver,
+geschützte Versionsstände und tatsächliche Signierfreigaben. Die eigene SignPath-
+Projektprüfung kann zusätzliche Anforderungen ergeben.
+
+Die Lokalprüfung erzeugte folgende EXE-Prüfsummen (nicht als signierte Downloads
+enthalten; eine spätere Signatur verändert diese Hashes):
+
+21a470bbc8a708a35dea0e69ca02c34b4b8b3f22483cd0d5c22d8b8e91d6a0b9  SiriModManager.exe
+2a850428fdfc2795ae053efdeecfb834a93c019c1598e1aa180e74b576976c59  SiriModManager_Setup.exe

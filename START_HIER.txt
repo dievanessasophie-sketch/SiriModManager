@@ -1,0 +1,58 @@
+SIRI MODMANAGER — SIGNPATH FOUNDATION
+Vorbereitung vom 3. Oktober 2026
+
+Das Paket enthält den vollständigen Manager-Quellcode und die Vorbereitung
+für kostenloses Code Signing durch die SignPath Foundation.
+Es enthält noch keine von der Foundation signierte EXE.
+
+GitHub-Stand vom 3. Oktober 2026
+
+Das öffentliche Repository wurde angelegt:
+https://github.com/dievanessasophie-sketch/SiriModManager
+
+Der Browser-Upload wurde vor dem ersten Commit durch einen technischen
+Browserfehler unterbrochen. Es wurde noch kein Windows-Build auf GitHub gestartet.
+Die Anmeldung und das Anlegen des Repository waren erfolgreich.
+
+Die nächsten Schritte
+
+1. Dieses ZIP entpacken und darin den Ordner SiriModManager öffnen.
+   Auf GitHub die Upload-Seite öffnen:
+   https://github.com/dievanessasophie-sketch/SiriModManager/upload
+   Den gesamten INHALT von SiriModManager (Dateien und Unterordner) in die
+   Upload-Fläche ziehen. README.md, go.mod, manager, setup und .github müssen
+   direkt im Repository liegen. Nicht die ZIP-Datei selbst hochladen.
+   Mit „Commit changes“ bestätigen. Die Ordner .github und scripts gehören dazu.
+   Die MIT-Lizenz liegt vorbereitet bei und erlaubt auch kommerzielle Weitergabe
+   des Manager-Codes. Die Mods und der Forum-Servercode sind nicht enthalten.
+2. Der Workflow „Build and test“ startet beim Commit auf main automatisch.
+   Unter „Actions“ das Ergebnis prüfen. Den Windows-Build und die Anmeldung
+   testen, dann einen öffentlichen Release zur passenden Quellcodeversion anlegen.
+   Ein vorläufig unsignierter Release muss deutlich als unsigniert bezeichnet sein.
+3. Unter https://signpath.org/apply bewerben. Die Textvorlage steht in
+   SiriModManager/signpath/ANTRAG.txt; die tatsächlichen GitHub-Links ergänzen.
+4. Nach der Zusage das Projekt, die beiden Artifact Configurations und die
+   geschützten GitHub-Einstellungen gemäß SiriModManager/SIGNPATH_SETUP.md verbinden.
+5. Erst den Testablauf, danach die Produktionssignierung ausführen.
+
+Bereits vorbereitet
+
+- MIT-Lizenz, Projektbeschreibung und Drittlizenzhinweise
+- Datenschutzhinweise und Anleitung zur Deinstallation des Managers
+- Code signing policy und englische Bewerbungsvorlage
+- GitHub-Builds ausschließlich aus dem Quellcode, einschließlich Icon/Versionsdaten
+- Zwei Signaturschritte: Manager signieren, im Setup einbetten, Setup signieren
+- Prüfung von Signatur, Herausgeber, Version und Zeitstempel vor Release-Ausgabe
+- Portable-ZIP, Lizenzbeilagen und Prüfsummen nach erfolgreicher Signierung
+
+Der Manager-Programmcode darf öffentlich sein; die ModBase verlangt weiterhin
+Registrierung und Freischaltung. Ein öffentlicher Quellcodezugang öffnet keine
+geschützten Moddownloads.
+
+Noch erforderlich: Quellcode-Upload, erfolgreiche GitHub-/Windows-Prüfung,
+echte Bewerbung und Annahme durch SignPath, zugeteilte Zertifikate und Kontowerte.
+Die Foundation entscheidet selbst über die Aufnahme. Sie wird als Zertifikat-
+Herausgeber verwendet; ein frei wählbarer Windows-Publisher ist damit nicht möglich.
+Eine Signatur garantiert nicht sofort das Ausbleiben jeder SmartScreen-Warnung.
+
+Details zu den bereits durchgeführten Prüfungen: PRUEFBERICHT.txt.
