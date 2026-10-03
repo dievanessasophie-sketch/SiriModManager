@@ -70,3 +70,16 @@ die Manager-EXE aus demselben Build. Lizenzbeilagen sind im ZIP vorhanden.
 SHA-256 der nativen Windows-Ausgaben (abweichend vom früheren Cross-Build):
 2cf93be19c27c4401380cce76b299408745fc301d5f86bbd69531c396ddc2965  SiriModManager.exe
 9a4f34b412f305f31e79c740bbc56d30a53858fecbc901287ad824ed9c221322  SiriModManager_Setup.exe
+
+Öffentliche Veröffentlichung
+
+Release: https://github.com/dievanessasophie-sketch/SiriModManager/releases/tag/v0.8.0
+Veröffentlicht: 2026-10-03T05:16:51Z
+Versionstag v0.8.0: 7360a6779385e4b4f22837ada7537495130916d5.
+Veröffentlichungsworkflow: https://github.com/dievanessasophie-sketch/SiriModManager/actions/runs/37099308180
+
+Sieben Downloads sind veröffentlicht, einschließlich beider zuvor geprüfter EXEs,
+ZIP, Lizenzhinweisen und SHA256SUMS.txt. Der Workflow hat die Build-Herkunft,
+sämtliche Dateihashes und die serverseitigen Asset-Digests vor Veröffentlichung
+verifiziert. Die Dateien sind weiterhin unsigniert; der Code-Signing-Antrag ist
+noch nicht versendet und eine Foundation-Annahme liegt noch nicht vor.

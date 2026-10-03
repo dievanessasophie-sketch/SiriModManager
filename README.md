@@ -23,9 +23,12 @@ Geprüfter Quellstand: `7360a6779385e4b4f22837ada7537495130916d5`. Die Kernlogik
 Windows-DPAPI-Tests sind bestanden; Manager und Setup liegen im Build-Artefakt
 `SiriModManager-UNSIGNED-37091483292` inklusive Lizenzhinweisen.
 
-**Die EXEs sind noch unsigniert.** Ein dauerhafter öffentlicher Release und die
-SignPath-Bewerbung stehen noch aus. Der [Release-Entwurf](docs/RELEASE_DRAFT.md)
-beschreibt den vorbereiteten Stand. Die Windows-Oberfläche und die Anmeldung
+**Die EXEs sind noch unsigniert.** [Version 0.8.0 ist öffentlich verfügbar](https://github.com/dievanessasophie-sketch/SiriModManager/releases/tag/v0.8.0).
+
+[Setup herunterladen](https://github.com/dievanessasophie-sketch/SiriModManager/releases/download/v0.8.0/SiriModManager_Setup.exe) ·
+[ZIP mit Manager, Setup und Lizenzen](https://github.com/dievanessasophie-sketch/SiriModManager/releases/download/v0.8.0/SiriModManager_v0.8.0_UNSIGNED.zip)
+
+Die SignPath-Bewerbung ist mit dem Downloadlink vorbereitet, aber noch nicht versendet. Die Windows-Oberfläche und die Anmeldung
 am produktiven Forum müssen vor einer allgemeinen Empfehlung praktisch geprüft werden.
 
 ## Erst das Forum aktualisieren
@@ -38,7 +41,7 @@ Die Anmeldung funktioniert mit diesem Pluginupdate. Der ältere Manager
 
 ## Installieren und anmelden
 
-1. Alten Manager schließen und **SiriModManager_Setup_v0.8.0.exe** ausführen.
+1. Alten Manager schließen und **SiriModManager_Setup.exe** ausführen.
    Installation unter `%LOCALAPPDATA%\Programs\Siri ModManager`, mit
    Desktop-Icon und Startmenü-Eintrag. Mods und Spielpfade bleiben erhalten.
 2. Im Manager **Im Forum anmelden** anklicken.

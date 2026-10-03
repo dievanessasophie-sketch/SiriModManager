@@ -39,18 +39,20 @@ Das Ergebnis heißt **SiriModManager-UNSIGNED-...**. Vor Veröffentlichung auf e
 Windows-PC prüfen: Start, Setup, Desktop-Verknüpfung, Forumlogin mit freigegebenem
 Konto, Ablehnung ohne Freigabe, Abmelden und lokale Modverwaltung.
 
-Für die Bewerbung einen öffentlichen Release zur passenden Quellcodeversion
-anlegen. Falls er noch unsigniert ist, dies deutlich angeben. Die beiliegenden
-Lizenzhinweise zusammen mit den EXEs bereitstellen. In der Releasebeschreibung
-auf README, PRIVACY.md, UNINSTALL.md und CODE_SIGNING.md verlinken.
+Der öffentliche Release zur geprüften Quellcodeversion wurde veröffentlicht:
+https://github.com/dievanessasophie-sketch/SiriModManager/releases/tag/v0.8.0
+
+Er ist deutlich als unsigniert gekennzeichnet. EXEs, ZIP, Lizenzhinweise und
+Prüfsummen sind verfügbar; die Beschreibung verlinkt Anleitung, Datenschutz,
+Deinstallation und Signierstatus.
 Die GitHub-Actions-Artefakte allein ersetzen keinen dauerhaften öffentlichen Release.
 
 ## 3. Antrag bei der Foundation
 
 https://signpath.org/apply öffnen. Projektname, Repository, Homepage,
 öffentlicher Release und Maintainerkonto angeben. Eine englische Textvorlage
-liegt als `signpath/ANTRAG.txt` bei. Die gekennzeichneten Felder erst mit echten
-Links ersetzen. Die Vorlage behauptet keine bestehende Freigabe oder laufende
+liegt vollständig mit den echten Projekt- und Release-Links als
+`signpath/ANTRAG.txt` bei. Die Vorlage behauptet keine bestehende Freigabe oder laufende
 Produktivsignierung. Der Antrag ist noch nicht versendet.
 
 Die Foundation prüft das Projekt und kann weitere Voraussetzungen verlangen.

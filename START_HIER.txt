@@ -1,28 +1,25 @@
 SIRI MODMANAGER — STATUS VOM 3. OKTOBER 2026
 
-Repository:
-https://github.com/dievanessasophie-sketch/SiriModManager
+Öffentlicher Release v0.8.0 (noch unsigniert):
+https://github.com/dievanessasophie-sketch/SiriModManager/releases/tag/v0.8.0
 
-Quellcode, MIT-Lizenz, Build- und SignPath-Workflows sind eingerichtet.
-Die hochgeladenen Quelldateien wurden in die Repository-Wurzel übernommen;
-fehlende Git- und Workflow-Dateien wurden ergänzt.
-
-Der erste Windows-Build ist erfolgreich:
+Enthalten: Manager, Setup, gemeinsames ZIP, Lizenzhinweise und SHA256SUMS.txt.
+Die EXEs stammen unverändert aus dem erfolgreichen Windows-Build:
 https://github.com/dievanessasophie-sketch/SiriModManager/actions/runs/37091483292
 
-Kernlogiktests und Windows-DPAPI-Tests sind bestanden. Manager und Setup wurden
-aus dem Quellcode erstellt und als UNSIGNED-Artefakt inklusive Lizenzen gesichert.
+Der Versionstag zeigt auf den geprüften Quellstand:
+7360a6779385e4b4f22837ada7537495130916d5
+
+Der Veröffentlichungslauf hat Herkunft und sämtliche Datei-Prüfsummen geprüft:
+https://github.com/dievanessasophie-sketch/SiriModManager/actions/runs/37099308180
 
 Noch offen:
-1. Windows-Oberfläche, Setup, Desktop-Icon und Anmeldung am freigegebenen
-   Forumkonto praktisch prüfen.
-2. Den vorbereiteten öffentlichen Release freigeben. Entwurf: docs/RELEASE_DRAFT.md.
-   Die EXEs sind noch unsigniert; der Release muss das deutlich ausweisen.
-3. Den Release-Link in signpath/ANTRAG.txt ergänzen und die Bewerbung freigeben.
-4. Nach tatsächlicher SignPath-Annahme die Kontowerte und geschützte
-   Signierfreigaben gemäß SIGNPATH_SETUP.md einrichten.
-5. Testsignierung, danach Produktionssignierung ausführen.
+1. Oberfläche, Setup, Desktop-Icon und produktive Forum-Anmeldung praktisch prüfen.
+2. Den vollständigen Antrag in signpath/ANTRAG.txt prüfen und das Einreichen bei
+   der SignPath Foundation freigeben. Der Antrag wurde noch nicht versendet.
+3. Nach tatsächlicher Annahme die Kontowerte und geschützten Signierfreigaben
+   gemäß SIGNPATH_SETUP.md einrichten.
+4. Testsignierung und anschließend Produktionssignierung ausführen.
 
-Es wurde noch keine SignPath-Bewerbung gesendet und keine EXE signiert.
-Ein erfolgreicher Build ist keine Signatur oder Garantie für einen warnungsfreien
-Start unter Windows. Die geschützte ModBase verlangt weiterhin Freischaltung.
+Es wurde noch keine EXE digital signiert. Die Windows-Warnung kann weiterhin
+erscheinen. Die geschützte ModBase verlangt weiterhin Registrierung und Freigabe.

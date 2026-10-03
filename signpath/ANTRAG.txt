@@ -1,12 +1,12 @@
 SIGNPATH FOUNDATION APPLICATION — DRAFT, NOT SUBMITTED
 
-Before submission, publish a release and replace the remaining public release
-placeholder with its real link. This application has not been submitted.
+The repository and public unsigned release below are available.
+This application is ready for review and has not been submitted.
 
 Project: Siri ModManager
 Repository: https://github.com/dievanessasophie-sketch/SiriModManager
 Project homepage: https://github.com/dievanessasophie-sketch/SiriModManager
-Public release/download: [PUBLIC RELEASE URL]
+Public release/download: https://github.com/dievanessasophie-sketch/SiriModManager/releases/tag/v0.8.0
 Verified Windows build: https://github.com/dievanessasophie-sketch/SiriModManager/actions/runs/37091483292
 Verified source commit: 7360a6779385e4b4f22837ada7537495130916d5
 Maintainer and proposed signing approver: Siri — dievanessasophie-sketch

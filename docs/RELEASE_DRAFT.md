@@ -1,8 +1,7 @@
-# Release-Entwurf: Siri ModManager 0.8.0 — unsigniert
+# Siri ModManager 0.8.0 — veröffentlichte Releasebeschreibung
 
-Dieser Text ist vorbereitet und noch nicht als GitHub-Release veröffentlicht.
-Vorgesehener Tag: `v0.8.0`; der Tag wurde noch nicht angelegt.
-Quellstand der EXEs: `7360a6779385e4b4f22837ada7537495130916d5`.
+Der freigegebene Entwurf wurde am 3. Oktober 2026 veröffentlicht:
+https://github.com/dievanessasophie-sketch/SiriModManager/releases/tag/v0.8.0
 
 ---
 
@@ -23,6 +22,8 @@ Windows kann deshalb weiterhin einen unbekannten Herausgeber melden.
 
 - `SiriModManager_Setup.exe`: Installation im Windows-Benutzerprofil mit Desktop-Icon.
 - `SiriModManager.exe`: direkt ausführbarer Manager.
+- `SiriModManager_v0.8.0_UNSIGNED.zip`: Manager, Setup und Lizenzhinweise als gemeinsames ZIP.
+- `SHA256SUMS.txt`: Prüfsummen aller Downloads.
 - `LICENSE`, `THIRD_PARTY_NOTICES.md` und `GO-LICENSE.txt`: zugehörige Lizenzhinweise.
 
 Alle Dateien stammen aus dem [erfolgreichen Windows-Build](https://github.com/dievanessasophie-sketch/SiriModManager/actions/runs/37091483292).
