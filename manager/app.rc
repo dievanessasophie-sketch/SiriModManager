@@ -1,8 +1,8 @@
 1 ICON "app.ico"
 1 24 "app.manifest"
 1 VERSIONINFO
-FILEVERSION 0,8,0,0
-PRODUCTVERSION 0,8,0,0
+FILEVERSION 0,8,1,0
+PRODUCTVERSION 0,8,1,0
 FILEOS 0x40004
 FILETYPE 1
 BEGIN
@@ -12,11 +12,11 @@ BEGIN
   BEGIN
    VALUE "CompanyName", "siri-mods.de\0"
    VALUE "FileDescription", "Siri ModManager\0"
-   VALUE "FileVersion", "0.8.0\0"
+   VALUE "FileVersion", "0.8.1\0"
    VALUE "InternalName", "SiriModManager\0"
    VALUE "OriginalFilename", "SiriModManager.exe\0"
    VALUE "ProductName", "Siri ModManager\0"
-   VALUE "ProductVersion", "0.8.0\0"
+   VALUE "ProductVersion", "0.8.1\0"
   END
  END
  BLOCK "VarFileInfo"

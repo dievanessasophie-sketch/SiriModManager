@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-const Version = "0.8.0"
+const Version = "0.8.1"
 const APIURL = "https://forum.siri-mods.de/index.php?siri-modbase-api/"
 const ModbaseURL = "https://forum.siri-mods.de/index.php?siri-modbase/"
 const Marker = ".siri-modmanager.json"
@@ -54,6 +54,7 @@ type Mod struct {
 }
 
 type ReleaseFile struct {
+	Folder string `json:"folder,omitempty"`
 	ID     int    `json:"id"`
 	Name   string `json:"name"`
 	Size   int64  `json:"size"`
@@ -215,6 +216,14 @@ func (m *Mod) UnmarshalJSON(b []byte) error {
 			if len(zips) == 1 {
 				f := zips[0]
 				m.Download, m.SHA256, m.Size = f.URL, f.SHA256, f.Size
+				// Flat ZIPs need a destination name. Prefer explicit API metadata;
+				// otherwise accept only a canonical mod ID from the selected ZIP.
+				if m.Folder == "" {
+					m.Folder = f.Folder
+					if m.Folder == "" {
+						m.Folder = archiveModFolder(f.Name)
+					}
+				}
 			} else if len(zips) > 1 {
 				m.DownloadNote = "Mehrere ZIP-Dateien: Wähle die passende Variante in der ModBase."
 			} else {
@@ -369,4 +378,19 @@ func WriteJSON(path string, v any) error {
 		return e
 	}
 	return os.Rename(tmp, path)
+}
+
+// Do not turn descriptive download titles or paths into guessed mod IDs.
+// Keep the archive stem unchanged: it can be referenced by the game or mods.
+var archiveModID = regexp.MustCompile(`^[A-Za-z0-9][A-Za-z0-9_-]*_[A-Za-z0-9][A-Za-z0-9_-]*_[1-9][0-9]*$`)
+
+func archiveModFolder(name string) string {
+	if !strings.HasSuffix(strings.ToLower(name), ".zip") {
+		return ""
+	}
+	stem := name[:len(name)-4]
+	if !SafeName(stem) || !archiveModID.MatchString(stem) {
+		return ""
+	}
+	return stem
 }

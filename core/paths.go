@@ -92,6 +92,11 @@ func validPackage(p, game string) bool {
 		return true
 	}
 	if game == "TF3" {
+		// Keep a TF3 package's metadata and content together. Otherwise the
+		// recursive scan mistakes metadata/mod.lua for a standalone mod.
+		if st, e := os.Stat(filepath.Join(p, "metadata", "mod.lua")); e == nil && !st.IsDir() {
+			return true
+		}
 		for _, n := range []string{"mod.json", "manifest.json"} {
 			if st, e := os.Stat(filepath.Join(p, n)); e == nil && !st.IsDir() {
 				return true

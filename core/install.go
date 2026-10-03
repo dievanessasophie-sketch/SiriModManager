@@ -217,7 +217,10 @@ func packages(root string, m Mod) ([]packageDir, error) {
 			name = m.Folder
 		}
 		if !SafeName(name) {
-			return nil, fmt.Errorf("Die API muss einen gültigen Installationsordner liefern")
+			if p == root {
+				return nil, fmt.Errorf("Das ZIP enthält keinen übergeordneten Modordner. Die ModBase muss einen gültigen Zielordner liefern (folder), oder die ZIP-Datei muss wie der Modordner heißen, z. B. siri_dortmund_1.zip")
+			}
+			return nil, fmt.Errorf("Ungültiger Modordner im ZIP: %q", name)
 		}
 		if m.Game == "TF2" {
 			parts := strings.Split(name, "_")
