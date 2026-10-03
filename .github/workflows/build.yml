@@ -1,0 +1,49 @@
+name: Build and test
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: '1.27.1'
+          cache: false
+      - uses: msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e # v2
+        id: msys2
+        with:
+          msystem: MINGW64
+          update: true
+          cache: false
+          install: mingw-w64-x86_64-gcc
+      - name: Test core and Windows DPAPI
+        shell: pwsh
+        run: |
+          go test -count=1 ./core ./internal/win
+          if ($LASTEXITCODE -ne 0) { throw 'Tests failed' }
+      - name: Build both executables from source
+        shell: pwsh
+        env:
+          MSYS2_ROOT: ${{ steps.msys2.outputs.msys2-location }}
+        run: ./Build.ps1 -WindResPath (Join-Path $env:MSYS2_ROOT 'mingw64/bin/windres.exe')
+      - name: Upload unsigned build for review
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: SiriModManager-UNSIGNED-${{ github.run_id }}
+          path: |
+            dist/unsigned/*.exe
+            LICENSE
+            THIRD_PARTY_NOTICES.md
+            third_party/GO-LICENSE.txt
+          if-no-files-found: error
+          retention-days: 14

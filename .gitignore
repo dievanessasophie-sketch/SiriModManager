@@ -1,0 +1,17 @@
+/dist/
+/setup/SiriModManager.exe
+*.syso
+*.res
+*.test
+*.exe
+*.log
+*.pfx
+*.p12
+*.key
+account.dpapi
+config.json
+installed.json
+.env
+.env.*
+.DS_Store
+Thumbs.db

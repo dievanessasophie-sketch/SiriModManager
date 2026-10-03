@@ -1,0 +1,147 @@
+name: SignPath signed build
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: 'test first; release only after Foundation approval'
+        type: choice
+        options: [test, release]
+        default: test
+        required: true
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: signpath-${{ github.repository }}
+  cancel-in-progress: false
+jobs:
+  sign:
+    runs-on: windows-2022
+    timeout-minutes: 120
+    environment: signpath
+    env:
+      CHANNEL: ${{ inputs.channel }}
+      DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+      SIGNPATH_ORGANIZATION_ID: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+      SIGNPATH_PROJECT_SLUG: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+      SIGNPATH_TEST_POLICY: ${{ vars.SIGNPATH_TEST_POLICY }}
+      SIGNPATH_RELEASE_POLICY: ${{ vars.SIGNPATH_RELEASE_POLICY }}
+      SIGNPATH_TEST_SUBJECT: ${{ vars.SIGNPATH_TEST_SUBJECT }}
+      SIGNPATH_RELEASE_SUBJECT: ${{ vars.SIGNPATH_RELEASE_SUBJECT }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Validate signing configuration and release ref
+        id: version
+        shell: pwsh
+        env:
+          SIGNING_TOKEN: ${{ secrets.SIGNPATH_API_TOKEN }}
+        run: |
+          $kind = $env:CHANNEL.ToUpperInvariant()
+          $env:SIGNPATH_POLICY = [Environment]::GetEnvironmentVariable("SIGNPATH_${kind}_POLICY")
+          $env:SIGNPATH_EXPECTED_SUBJECT = [Environment]::GetEnvironmentVariable("SIGNPATH_${kind}_SUBJECT")
+          foreach ($name in @('SIGNPATH_ORGANIZATION_ID', 'SIGNPATH_PROJECT_SLUG', 'SIGNPATH_POLICY', 'SIGNPATH_EXPECTED_SUBJECT', 'SIGNING_TOKEN')) {
+            if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($name))) { throw "Missing configuration: $name" }
+          }
+          foreach ($value in @($env:SIGNPATH_POLICY, $env:SIGNPATH_EXPECTED_SUBJECT)) {
+            if ($value.Contains("`n") -or $value.Contains("`r")) { throw 'Invalid multiline signing configuration' }
+          }
+          "SIGNPATH_POLICY=$env:SIGNPATH_POLICY" >> $env:GITHUB_ENV
+          "SIGNPATH_EXPECTED_SUBJECT=$env:SIGNPATH_EXPECTED_SUBJECT" >> $env:GITHUB_ENV
+          $version = ./scripts/Get-Version.ps1
+          if ($env:CHANNEL -eq 'release') {
+            if ($env:GITHUB_REF -cne "refs/tags/v$version") { throw "Release requires tag v$version" }
+          } elseif ($env:GITHUB_REF -cne "refs/heads/$env:DEFAULT_BRANCH") {
+            throw 'Test signing is restricted to the default branch.'
+          }
+          "version=$version" >> $env:GITHUB_OUTPUT
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: '1.27.1'
+          cache: false
+      - uses: msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e # v2
+        id: msys2
+        with:
+          msystem: MINGW64
+          update: true
+          cache: false
+          install: mingw-w64-x86_64-gcc
+      - name: Test core and Windows DPAPI
+        shell: pwsh
+        run: |
+          go test -count=1 ./core ./internal/win
+          if ($LASTEXITCODE -ne 0) { throw 'Tests failed' }
+      - name: Build manager
+        shell: pwsh
+        env:
+          MSYS2_ROOT: ${{ steps.msys2.outputs.msys2-location }}
+        run: ./Build.ps1 -Target Manager -WindResPath (Join-Path $env:MSYS2_ROOT 'mingw64/bin/windres.exe')
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        id: manager-upload
+        with:
+          name: manager-unsigned-${{ github.run_id }}
+          path: dist/unsigned/SiriModManager.exe
+          archive: true
+          if-no-files-found: error
+          retention-days: 7
+      - name: Sign manager and wait for approval
+        uses: signpath/github-action-submit-signing-request@f6d04783b4569d051e0c80105fe66e82819d0092 # v3
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ env.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ env.SIGNPATH_PROJECT_SLUG }}
+          signing-policy-slug: ${{ env.SIGNPATH_POLICY }}
+          artifact-configuration-slug: manager
+          github-artifact-id: ${{ steps.manager-upload.outputs.artifact-id }}
+          wait-for-completion: true
+          wait-for-completion-timeout-in-seconds: 2400
+          output-artifact-directory: dist/signed/manager
+          parameters: |
+            version: ${{ toJSON(steps.version.outputs.version) }}
+      - name: Verify manager and embed it in setup
+        shell: pwsh
+        env:
+          MSYS2_ROOT: ${{ steps.msys2.outputs.msys2-location }}
+        run: |
+          $arguments = @{
+            Target = 'Setup'
+            WindResPath = (Join-Path $env:MSYS2_ROOT 'mingw64/bin/windres.exe')
+            ManagerPath = 'dist/signed/manager/SiriModManager.exe'
+            RequireSignedManager = $true
+            ExpectedSignerSubject = $env:SIGNPATH_EXPECTED_SUBJECT
+            AllowTestCertificate = ($env:CHANNEL -eq 'test')
+          }
+          ./Build.ps1 @arguments
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        id: setup-upload
+        with:
+          name: setup-unsigned-${{ github.run_id }}
+          path: dist/unsigned/SiriModManager_Setup.exe
+          archive: true
+          if-no-files-found: error
+          retention-days: 7
+      - name: Sign setup and wait for approval
+        uses: signpath/github-action-submit-signing-request@f6d04783b4569d051e0c80105fe66e82819d0092 # v3
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ env.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ env.SIGNPATH_PROJECT_SLUG }}
+          signing-policy-slug: ${{ env.SIGNPATH_POLICY }}
+          artifact-configuration-slug: setup
+          github-artifact-id: ${{ steps.setup-upload.outputs.artifact-id }}
+          wait-for-completion: true
+          wait-for-completion-timeout-in-seconds: 2400
+          output-artifact-directory: dist/signed/setup
+          parameters: |
+            version: ${{ toJSON(steps.version.outputs.version) }}
+      - name: Verify signatures and make portable ZIP and checksums
+        shell: pwsh
+        run: ./scripts/Package-Release.ps1 -Channel $env:CHANNEL -ExpectedSubject $env:SIGNPATH_EXPECTED_SUBJECT
+      - name: Upload completed build for release review
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: SiriModManager-${{ inputs.channel }}-${{ steps.version.outputs.version }}-${{ github.run_id }}
+          path: dist/package/*
+          if-no-files-found: error
+          retention-days: 30
