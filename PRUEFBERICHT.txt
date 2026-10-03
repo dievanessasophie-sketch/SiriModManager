@@ -28,14 +28,14 @@ Erfolgreich geprüft
 
 Grenzen
 
-Die Buildprüfung erfolgte als Cross-Build auf Linux. Die Windows-Oberfläche,
-Explorer-Dialoge, Installation und Windows-DPAPI wurden hier nicht ausgeführt.
-Die Windows-DPAPI-Tests sind im GitHub-Windows-Workflow enthalten.
+Zusätzlich zur ursprünglichen Linux-Cross-Build-Prüfung wurde der native
+Windows-Build erfolgreich auf GitHub ausgeführt. Windows-DPAPI-Tests sind
+bestanden. Windows-Oberfläche, Explorer-Dialoge, Installation und die Anmeldung
+am produktiven Forum wurden hier nicht interaktiv ausgeführt.
 
-Das öffentliche GitHub-Repository wurde am 3. Oktober 2026 angelegt. Der Upload
-wurde vor dem ersten Commit durch einen technischen Browserfehler unterbrochen.
-GitHub-Buildausführung und SignPath-Anfragen stehen daher weiterhin aus; eine
-Foundation-Freigabe liegt ebenfalls noch nicht vor. Die Windows-Authenticode-Prüfung
+Das öffentliche Repository enthält den vollständigen Quellcode. Der erste
+Windows-Build einschließlich Tests, Ressourcen, Manager, Setup und Upload ist
+erfolgreich. SignPath-Anfragen und die Foundation-Freigabe stehen weiterhin aus. Die Windows-Authenticode-Prüfung
 und der komplette Ablauf mit einem echten Foundation-Zertifikat sind daher noch
 offen. Die Workflow-Dateien und XML-Konfigurationen sind eine geprüfte Vorbereitung,
 keine Bestätigung, dass SignPath das Projekt angenommen oder die Konfiguration
@@ -51,3 +51,22 @@ enthalten; eine spätere Signatur verändert diese Hashes):
 
 21a470bbc8a708a35dea0e69ca02c34b4b8b3f22483cd0d5c22d8b8e91d6a0b9  SiriModManager.exe
 2a850428fdfc2795ae053efdeecfb834a93c019c1598e1aa180e74b576976c59  SiriModManager_Setup.exe
+
+GitHub-Windows-Prüfung am 3. Oktober 2026
+
+Build: https://github.com/dievanessasophie-sketch/SiriModManager/actions/runs/37091483292
+Quellstand: 7360a6779385e4b4f22837ada7537495130916d5
+Job: 111112579442, Ergebnis: success.
+Tests: sirimodmanager/core und sirimodmanager/internal/win erfolgreich.
+Artefakt: SiriModManager-UNSIGNED-37091483292 (ID 11261604898).
+
+Der heruntergeladene ZIP-Hash entspricht dem von GitHub ausgewiesenen Digest:
+d31778b5edf16b4646cf88f3bfeb1437b32dc4fbc9dbf545c690f6acad2b536e
+
+Beide Dateien sind Windows-x64-GUI-Programme. Die Authenticode-Verzeichnisse
+sind leer: Es besteht noch keine digitale Signatur. Das Setup enthält exakt
+die Manager-EXE aus demselben Build. Lizenzbeilagen sind im ZIP vorhanden.
+
+SHA-256 der nativen Windows-Ausgaben (abweichend vom früheren Cross-Build):
+2cf93be19c27c4401380cce76b299408745fc301d5f86bbd69531c396ddc2965  SiriModManager.exe
+9a4f34b412f305f31e79c740bbc56d30a53858fecbc901287ad824ed9c221322  SiriModManager_Setup.exe

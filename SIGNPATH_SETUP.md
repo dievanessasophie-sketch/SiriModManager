@@ -8,10 +8,11 @@ garantiert, insbesondere bei einem neuen Projekt mit noch geringer Bekanntheit.
 
 ## 1. Öffentliches Repository
 
-Ein öffentliches GitHub-Repository **SiriModManager** im eigenen Konto anlegen
-oder ein dafür vorgesehenes Repository verwenden. Den Inhalt dieses Ordners
-einschließlich `.github`, `.gitignore` und `.gitattributes` in dessen Wurzel ablegen.
-Keine entpackte ZIP als weitere Unterebene hochladen. Hauptbranch: `main`.
+Das öffentliche Repository ist angelegt und vollständig eingerichtet:
+https://github.com/dievanessasophie-sketch/SiriModManager
+
+Quellcode, `.github`, `.gitignore` und `.gitattributes` liegen in der Wurzel.
+Hauptbranch: `main`. Die Freigabe des MIT-Quellcodes wurde bestätigt.
 
 Die vorbereitete Lizenz ist **MIT**. Sie erlaubt ausdrücklich auch Änderungen,
 Weitergabe und kommerzielle Nutzung des Manager-Codes. Diese Lizenzentscheidung
@@ -26,7 +27,10 @@ ohne Forum-Anmeldung erreichbar sein.
 
 ## 2. Build und erste Veröffentlichung
 
-Unter **Actions → Build and test** einen Build laufen lassen. Er prüft die
+Der erste Windows-Build war am 3. Oktober 2026 erfolgreich:
+https://github.com/dievanessasophie-sketch/SiriModManager/actions/runs/37091483292
+
+Unter **Actions → Build and test** lassen sich weitere Builds starten. Der Workflow prüft die
 Kernfunktionen und Windows-DPAPI, erzeugt Versionsressourcen aus dem Quellcode
 und baut Manager und Setup auf einem von GitHub bereitgestellten Windows-Rechner.
 Es werden keine mitgelieferten EXEs oder `.syso`-Dateien übernommen.
@@ -117,9 +121,9 @@ den dort vorbereiteten SignPath-Hinweis auf den Downloadseiten ergänzen.
 
 Eine Signatur beseitigt nicht garantiert sofort jede SmartScreen-Meldung.
 SignPath entscheidet über Aufnahme, Zertifikat und zusätzliche Kontrollen.
-Hier konnten GitHub-Ausführung, echte Signatur, manuelle Freigaben und Windows-
-Oberfläche noch nicht abschließend geprüft werden. Details stehen im Prüfbericht
-des Vorbereitungspakets. Der Workflow bricht bei fehlenden Werten oder ungültiger
+Die GitHub-Ausführung einschließlich Windows-DPAPI-Tests wurde erfolgreich
+geprüft. Echte Signatur, manuelle Signierfreigaben und die Windows-Oberfläche
+sind weiterhin offen. Details stehen in [PRUEFBERICHT.txt](PRUEFBERICHT.txt). Der Workflow bricht bei fehlenden Werten oder ungültiger
 Signatur ab und liefert keinen ersatzweise unsignierten „Release“.
 
 GitHub-Actions sind auf geprüfte Commit-IDs festgelegt (checkout v6, setup-go v6,

@@ -1,12 +1,14 @@
 SIGNPATH FOUNDATION APPLICATION — DRAFT, NOT SUBMITTED
 
-Before submission, upload the prepared source, publish a release, verify the Windows build,
-and replace the remaining public release placeholder with its real link.
+Before submission, publish a release and replace the remaining public release
+placeholder with its real link. This application has not been submitted.
 
 Project: Siri ModManager
 Repository: https://github.com/dievanessasophie-sketch/SiriModManager
 Project homepage: https://github.com/dievanessasophie-sketch/SiriModManager
 Public release/download: [PUBLIC RELEASE URL]
+Verified Windows build: https://github.com/dievanessasophie-sketch/SiriModManager/actions/runs/37091483292
+Verified source commit: 7360a6779385e4b4f22837ada7537495130916d5
 Maintainer and proposed signing approver: Siri — dievanessasophie-sketch
 Contact: mail@siri-mods.de
 License: MIT (the Go runtime is covered by its BSD license)
@@ -18,7 +20,7 @@ It is written in Go and uses the Windows API directly. There are no external Go
 module dependencies, bundled advertisements or analytics SDKs.
 
 The application source, build scripts, resources and project documentation are
-prepared for public release under the MIT license. Downloaded game mods
+publicly available under the MIT license. Downloaded game mods
 and the separate server are not part of the software being submitted for signing.
 The ModBase service requires a registered and approved forum account. Desktop
 authentication takes place through the normal browser with PKCE and scoped device
@@ -26,7 +28,7 @@ tokens; the application does not collect the forum password.
 
 We request code signing for two binaries built from this repository:
 SiriModManager.exe and SiriModManager_Setup.exe. The prepared GitHub Actions
-workflow builds on GitHub-hosted Windows runners, requests the manager signature,
+workflow is configured for GitHub-hosted Windows runners, requests the manager signature,
 verifies it, embeds that exact signed binary into the installer, then requests
 the installer signature. Separate test and release policies are planned, with
 manual approval for each signing request.
@@ -35,6 +37,9 @@ The repository includes a code signing policy, privacy information, uninstall
 instructions and third-party notices. We would configure origin verification,
 MFA and protected signing access according to the Foundation's requirements.
 
-This is our first Foundation application. The prepared workflow has not yet been
+The unsigned Windows workflow has completed successfully, including core and
+Windows DPAPI tests. It produced both executables from the published source.
+
+This is our first Foundation application. The prepared signing workflow has not yet been
 run against a Foundation certificate. Please let us know if further project
 history, review or configuration is required for acceptance.

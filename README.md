@@ -15,6 +15,19 @@ Signierung wird damit nicht behauptet. [Datenschutz](PRIVACY.md) ·
 Der offene Programmcode ändert die Registrierung und Freischaltung der ModBase
 nicht. Der Server entscheidet weiterhin über jeden geschützten Abruf.
 
+## Geprüfter Windows-Build
+
+Am 3. Oktober 2026 wurde Version **0.8.0** auf einem GitHub-Windows-Runner
+erfolgreich getestet und gebaut: [Build and test](https://github.com/dievanessasophie-sketch/SiriModManager/actions/runs/37091483292).
+Geprüfter Quellstand: `7360a6779385e4b4f22837ada7537495130916d5`. Die Kernlogik- und
+Windows-DPAPI-Tests sind bestanden; Manager und Setup liegen im Build-Artefakt
+`SiriModManager-UNSIGNED-37091483292` inklusive Lizenzhinweisen.
+
+**Die EXEs sind noch unsigniert.** Ein dauerhafter öffentlicher Release und die
+SignPath-Bewerbung stehen noch aus. Der [Release-Entwurf](docs/RELEASE_DRAFT.md)
+beschreibt den vorbereiteten Stand. Die Windows-Oberfläche und die Anmeldung
+am produktiven Forum müssen vor einer allgemeinen Empfehlung praktisch geprüft werden.
+
 ## Erst das Forum aktualisieren
 
 Im WoltLab-ACP **de.siri-mods.modbase_2.0.0_Beta_2.tar.gz** als Paketupdate
