@@ -242,11 +242,12 @@ func (m *Mod) UnmarshalJSON(b []byte) error {
 }
 
 type Config struct {
-	APIURL    string `json:"api_url"`
-	TF2Path   string `json:"tf2_path"`
-	TF3Path   string `json:"tf3_path"`
-	Theme     string `json:"theme"`
-	AutoCheck bool   `json:"auto_check"`
+	APIURL           string `json:"api_url"`
+	TF2Path          string `json:"tf2_path"`
+	TF3Path          string `json:"tf3_path"`
+	Theme            string `json:"theme"`
+	AutoCheck        bool   `json:"auto_check"`
+	ManagerAutoCheck bool   `json:"manager_auto_check"`
 }
 
 func (c Config) Root(game string) string {
@@ -258,7 +259,9 @@ func (c Config) Root(game string) string {
 	}
 	return ""
 }
-func DefaultConfig() Config { return Config{APIURL: APIURL, Theme: "dark", AutoCheck: true} }
+func DefaultConfig() Config {
+	return Config{APIURL: APIURL, Theme: "dark", AutoCheck: true, ManagerAutoCheck: true}
+}
 
 type Installed struct {
 	ID          int       `json:"id"`

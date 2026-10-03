@@ -65,7 +65,9 @@ func paint(hwnd uintptr) {
 	fillRound(mem, r, c.bg, 0)
 	hits = nil
 	sidebar(mem, r)
-	if app.page == 4 || (app.page != 1 && app.page != 3 && !app.authenticated) {
+	if app.page == 5 {
+		managerUpdatePage(mem, r)
+	} else if app.page == 4 || (app.page != 1 && app.page != 3 && !app.authenticated) {
 		accountPage(mem, r)
 	} else if app.page == 3 {
 		settings(mem, r)
@@ -327,7 +329,7 @@ func settings(h uintptr, r RECT) {
 	left, right := int32(252), r.Right-32
 	text(h, "Einstellungen", RECT{left, 30, right, 75}, c.text, fontHero)
 	text(h, "Deine Spiele, dein Erscheinungsbild und deine Verbindung.", RECT{left + 2, 82, right, 108}, c.muted, fontRegular)
-	btn(h, RECT{right - 184, 34, right, 73}, "Forumkonto", false, func() { setPage(4) })
+	btn(h, RECT{right - 184, 34, right, 73}, "Manager-Updates", false, func() { setPage(5) })
 	for n, g := range []string{"TF2", "TF3"} {
 		y := int32(117 + n*120)
 		fillRound(h, RECT{left, y, right, y + 110}, c.panel, 16)
@@ -363,7 +365,7 @@ func settings(h uintptr, r RECT) {
 	btn(h, RECT{right - 125, y + 17, right - 18, y + 53}, "Hell", app.cfg.Theme == "light", func() { app.cfg.Theme = "light"; saveConfig(); updateTheme() })
 	y = 448
 	fillRound(h, RECT{left, y, right, y + 69}, c.panel, 14)
-	text(h, "Automatische Update-Prüfung", RECT{left + 18, y + 12, right - 165, y + 37}, c.text, fontSemibold)
+	text(h, "Automatische Mod-Update-Prüfung", RECT{left + 18, y + 12, right - 165, y + 37}, c.text, fontSemibold)
 	text(h, "Beim Start und alle 15 Minuten, solange der Manager geöffnet ist.", RECT{left + 18, y + 39, right - 165, y + 63}, c.muted, fontRegular)
 	s := "Aus"
 	if app.cfg.AutoCheck {

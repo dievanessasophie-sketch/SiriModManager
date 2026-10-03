@@ -1,6 +1,6 @@
 # Datenschutz im Siri ModManager
 
-Stand: 3. Oktober 2026. Gilt für die Desktop-Anwendung Version 0.8.0.
+Stand: 3. Oktober 2026. Gilt für die Desktop-Anwendung Version 0.8.1.
 Projektkontakt: Siri, https://www.siri-mods.de/, mail@siri-mods.de.
 
 ## Netzwerkverbindungen
@@ -48,3 +48,7 @@ Die lokale Verwaltung installierter Mods ist ohne Anmeldung möglich.
 
 Die vollständige Entfernung des Programms und optional seiner lokalen Daten ist
 in [UNINSTALL.md](UNINSTALL.md) beschrieben.
+
+## Updates der Anwendung
+
+Standardmäßig prüft der Manager einmal beim Start über `api.github.com`, ob eine neue stabile Veröffentlichung im öffentlichen GitHub-Projekt vorliegt. Diese Prüfung ist unter Einstellungen → Manager-Updates separat abschaltbar und dort auch manuell möglich. GitHub erhält technisch notwendige Verbindungsdaten wie IP-Adresse und User-Agent mit Programmversion; Forumtokens, Benutzernamen und Modlisten werden nicht mitgesendet. Bei einem Update öffnet der Manager die GitHub-Downloadseite erst nach Bestätigung. Programme werden nicht automatisch heruntergeladen oder ausgeführt.

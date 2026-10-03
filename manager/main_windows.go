@@ -241,6 +241,9 @@ func load() {
 			app.authenticated = signed
 			app.installed = old
 			app.ready = true
+			if app.cfg.ManagerAutoCheck {
+				checkManagerUpdate(false)
+			}
 			app.status = "Bitte im Forum anmelden. Installierte Mods sind lokal verfügbar."
 			if len(notes) > 0 {
 				app.status = strings.Join(notes, " ")
